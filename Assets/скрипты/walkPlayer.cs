@@ -5,64 +5,37 @@ using UnityEngine;
 public class walkPlayer : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public Rigidbody2D rb;
-    public Animator animator;
 
+    private Rigidbody2D rb;
+    private Animator animator;
     private Vector2 movement;
-    private bool isMoving;
+    private SpriteRenderer sprite;
 
-
+    void Start()
+    {
+        sprite = GetComponent<SpriteRenderer>();
+        rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+    }
 
     void Update()
     {
+        // Получаем направление движения
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        isMoving = movement.x != 0 || movement.y != 0;
+        print(movement);
 
-        UpdateAnimation();
+        animator.SetFloat("MoveX", movement.x);
+        animator.SetFloat("MoveY", movement.y);
+        sprite.flipX = movement.x > 0;
+        
     }
 
-    void FixedUpdaye()
+    void FixedUpdate()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-
+        // Двигаем персонажа
+        rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
     }
 
-    void UpdateAnimation()
-    {
-        if (isMoving)
-        {
-            animator.SetFloat("Speed", movement.sqrMagnitude);
-
-            if (movement.x > 0)
-            {
-                animator.SetFloat("MoveX", 1);
-                animator.SetFloat("MoveY", 0);
-            }
-
-            else if (movement.x < 0)
-            {
-                animator.SetFloat("MoveX", -1);
-                animator.SetFloat("MoveY", 0);
-            }
-
-            else if (movement.y > 0)
-            {
-                animator.SetFloat("MoveX", 0);
-                animator.SetFloat("MoveY", 1);
-            }
-
-            else if (movement.y < 0)
-            {
-                animator.SetFloat("MoveX", 0);
-                animator.SetFloat("MoveY", -1);
-            }
-        }
-
-        else
-        {
-            animator.SetFloat("Speed", 0);
-        }
-    }
 }
