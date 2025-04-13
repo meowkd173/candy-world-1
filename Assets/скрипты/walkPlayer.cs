@@ -24,7 +24,7 @@ public class walkPlayer : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        print(movement);
+       
 
         animator.SetFloat("MoveX", movement.x);
         animator.SetFloat("MoveY", movement.y);
