@@ -7,12 +7,9 @@ public class EnemySpawn : MonoBehaviour
     public GameObject enemyPrefab;              // Префаб врага
     public Transform[] spawnPoints;             // Точки спавна (3 точки)
 
-    void Start()
-    {
-        SpawnEnemies();
-    }
+  
 
-    void SpawnEnemies()
+    public void SpawnEnemies()
     {
         if (enemyPrefab == null || spawnPoints.Length == 0)
         {

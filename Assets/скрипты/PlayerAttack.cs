@@ -29,7 +29,7 @@ public class PlayerAttack : MonoBehaviour
     void Attack()
     {
         // Запуск анимации удара
-        animator.SetTrigger("Attack");
+        animator.SetTrigger("attack");
 
         // Проверка попадания по врагу
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRange, enemyLayer);

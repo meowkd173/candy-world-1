@@ -9,6 +9,7 @@ public class EnemyHealth : MonoBehaviour
 
     private Animator animator;
 
+
     void Start()
     {
         currentHealth = maxHealth;

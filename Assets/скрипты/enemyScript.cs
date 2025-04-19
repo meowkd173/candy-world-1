@@ -9,6 +9,10 @@ public class enemyScript : MonoBehaviour
     public float stopDistance = 1f;       // Расстояние, на котором враг останавливается
     public float moveSpeed = 2f;          // Скорость врага
 
+    private void Start()
+    {
+        player = FindAnyObjectByType<walkPlayer>().gameObject.transform;
+    }
     private void Update()
     {
         if (player == null) return;
