@@ -22,16 +22,10 @@ public class HealthBar : MonoBehaviour
         UpdateHealthBar();
     }
 
-    void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
         if (fillImage != null)
             fillImage.fillAmount = currentHealth / maxHealth;
     }
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("enemy"))
-        {
-            GetComponent<HealthBar>().TakeDamage(20f);
-        }
-    }
+    
 }
